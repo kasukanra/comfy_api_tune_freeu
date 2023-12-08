@@ -1,0 +1,245 @@
+{
+  "4": {
+    "inputs": {
+      "ckpt_name": "SDXL_FINETUNE_KSK_NOT_SYM\\ksk_finetune_03_fresh_LR-000024.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple"
+  },
+  "10": {
+    "inputs": {
+      "width": 4096,
+      "height": 4096,
+      "crop_w": 0,
+      "crop_h": 0,
+      "target_width": [
+        "11",
+        0
+      ],
+      "target_height": [
+        "11",
+        1
+      ],
+      "text_g": [
+        "23",
+        0
+      ],
+      "text_l": [
+        "23",
+        0
+      ],
+      "clip": [
+        "4",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncodeSDXL"
+  },
+  "11": {
+    "inputs": {
+      "resolution": "square - 1024x1024 (1:1)"
+    },
+    "class_type": "SDXL Resolutions (JPS)"
+  },
+  "13": {
+    "inputs": {
+      "width": 4096,
+      "height": 4096,
+      "crop_w": 0,
+      "crop_h": 0,
+      "target_width": [
+        "11",
+        0
+      ],
+      "target_height": [
+        "11",
+        1
+      ],
+      "text_g": [
+        "27",
+        0
+      ],
+      "text_l": [
+        "27",
+        0
+      ],
+      "clip": [
+        "4",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncodeSDXL"
+  },
+  "18": {
+    "inputs": {
+      "text_a": [
+        "21",
+        0
+      ],
+      "text_b": [
+        "22",
+        0
+      ],
+      "linebreak_addition": "false",
+      "delimiter": ","
+    },
+    "class_type": "Text Concatenate"
+  },
+  "21": {
+    "inputs": {
+      "string": "kasukanrasty"
+    },
+    "class_type": "String to Text"
+  },
+  "22": {
+    "inputs": {
+      "text": "masterpiece, best quality, 1girl, a waist up front view of a beautiful teenage female adventurer, wearing white cloak, religious feeling, (small breasts:1.1), techwear, looking at viewer, simple background"
+    },
+    "class_type": "Text Multiline"
+  },
+  "23": {
+    "inputs": {
+      "string": [
+        "18",
+        0
+      ]
+    },
+    "class_type": "String to Text"
+  },
+  "24": {
+    "inputs": {
+      "text": "embedding:EasyNegative, monochrome, cropped, smooth, plastic, blurry, grainy, low-resolution, deep-fried, oversaturated, 3d render, smooth, plastic, blurry, grainy, low-resolution, deep-fried, oversaturated"
+    },
+    "class_type": "Text Multiline"
+  },
+  "27": {
+    "inputs": {
+      "string": [
+        "24",
+        0
+      ]
+    },
+    "class_type": "String to Text"
+  },
+  "30": {
+    "inputs": {
+      "width": [
+        "11",
+        0
+      ],
+      "height": [
+        "11",
+        1
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage"
+  },
+  "34": {
+    "inputs": {
+      "number_type": "integer",
+      "minimum": 0,
+      "maximum": 184467440737095520,
+      "seed": 1057977884908396
+    },
+    "class_type": "Random Number"
+  },
+  "35": {
+    "inputs": {
+      "Value": 28
+    },
+    "class_type": "Integer"
+  },
+  "38": {
+    "inputs": {
+      "vae_name": "sdxl_vae.safetensors"
+    },
+    "class_type": "VAELoader"
+  },
+  "41": {
+    "inputs": {
+      "add_noise": "enable",
+      "noise_seed": [
+        "34",
+        2
+      ],
+      "steps": [
+        "35",
+        0
+      ],
+      "cfg": 8,
+      "sampler_name": "euler",
+      "scheduler": "normal",
+      "start_at_step": 0,
+      "end_at_step": [
+        "35",
+        0
+      ],
+      "return_with_leftover_noise": "disable",
+      "model": [
+        "51",
+        0
+      ],
+      "positive": [
+        "10",
+        0
+      ],
+      "negative": [
+        "13",
+        0
+      ],
+      "latent_image": [
+        "30",
+        0
+      ]
+    },
+    "class_type": "KSamplerAdvanced"
+  },
+  "48": {
+    "inputs": {
+      "samples": [
+        "41",
+        0
+      ],
+      "vae": [
+        "38",
+        0
+      ]
+    },
+    "class_type": "VAEDecode"
+  },
+  "51": {
+    "inputs": {
+      "b1": 1,
+      "b2": 1,
+      "s1": 1.1,
+      "s2": 0.2,
+      "model": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "FreeU_V2"
+  },
+  "63": {
+    "inputs": {
+      "output_path": "[time(%Y-%m-%d)]",
+      "filename_prefix": "ComfyUI",
+      "filename_delimiter": "_",
+      "filename_number_padding": 4,
+      "filename_number_start": "false",
+      "extension": "png",
+      "quality": 100,
+      "lossless_webp": "false",
+      "overwrite_mode": "false",
+      "show_history": "false",
+      "show_history_by_prefix": "true",
+      "embed_workflow": "true",
+      "show_previews": "true",
+      "images": [
+        "48",
+        0
+      ]
+    },
+    "class_type": "Image Save"
+  }
+}
